@@ -29,3 +29,4 @@ MIT License
 # Changelog
 - v1.0.0: Initial release (2025.1.21)
 - v1.0.1: Add README.md (2025.1.21)
+- v1.0.2: Update license to MIT (2025.1.21)
