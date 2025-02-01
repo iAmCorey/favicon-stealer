@@ -8,6 +8,11 @@ interface IProps {
   size?: number;
   className?: string;
   timeout?: number;
+  border?: boolean;
+  padding?: number;
+  background?: string;
+  borderRadius?: number;
+  lazy?: boolean;
 }
 
 const Favicon = ({
@@ -15,6 +20,11 @@ const Favicon = ({
   size = 32,
   className = "",
   timeout = 1000, // 1 second
+  border = false,
+  padding = 0,
+  background = "transparent",
+  borderRadius = 0,
+  lazy = false,
 }: IProps) => {
   const domain = getDomain(url);
   const [imgSrc, setImgSrc] = useState(`https://${domain}/logo.svg`);
@@ -67,8 +77,22 @@ const Favicon = ({
 
   return (
     <div
-      className={`relative inline-block ${className}`}
-      style={{ width: size, height: size }}
+      className={
+        `relative inline-block 
+        ${className} 
+        ${border ? "border" : ""} 
+        ${hasError ? "opacity-0" : ""}
+        ${padding ? `p-[${padding}px]` : ""}
+        ${borderRadius ? `rounded-[${borderRadius}px]` : ""}
+        `
+      }
+      style={{
+        width: size,
+        height: size,
+        background: background,
+        padding: padding ? `${padding}px` : 0,
+        borderRadius: borderRadius ? `${borderRadius}px` : 0,
+      }}
     >
       {/* placeholder */}
       {isLoading && (
@@ -82,6 +106,7 @@ const Favicon = ({
         alt={`${domain} logo`}
         width={size}
         height={size}
+        loading={lazy ? "lazy" : "eager"}
         onError={handleError}
         onLoad={handleLoad}
         className={`inline-block transition-opacity duration-300 ${
