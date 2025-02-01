@@ -1,11 +1,13 @@
 # favicon-stealer
-favicon stealer npm package
+A react component to get clear and consistent favicon of a website easily.
 
 
 # installation
 ```shell
 npm install favicon-stealer
+pnpm add favicon-stealer
 ```
+
 
 # usage
 ```typescript
@@ -27,11 +29,14 @@ import { Favicon } from 'favicon-stealer';
 | `background` | `string` | The background color of the favicon. Default is transparent.(in hex) |
 | `borderRadius` | `number` | The border radius in pixels.(px) Default is 0. |
 
+
 # npm package
 https://www.npmjs.com/package/favicon-stealer
 
+
 # license
 MIT License
+
 
 # Changelog
 - v1.0.0: Initial release (2025.1.21)
