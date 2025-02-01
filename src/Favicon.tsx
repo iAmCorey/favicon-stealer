@@ -1,6 +1,6 @@
 "use client";
 
-import { getDomain } from "@/lib/utils";
+import { getDomain } from "./lib/utils";
 import React, { useEffect, useState } from "react";
 
 interface IProps {

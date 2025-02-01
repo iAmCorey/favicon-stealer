@@ -8,14 +8,18 @@
     "declarationDir": "dist/types",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "baseUrl": "./src",
+    "rootDir": "./src",
     "paths": {
       "@/*": ["./*"]
     },
     "esModuleInterop": true
   },
   "include": [
-    "src",
-    "lib"
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

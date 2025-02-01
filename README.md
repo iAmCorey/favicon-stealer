@@ -22,6 +22,8 @@ import { Favicon } from 'favicon-stealer';
 | `className` | `string` | A class name to apply to the element. |
 | `timeout` | `number` | The timeout in milliseconds for fetching the favicon. Default is 1000 (1 second). |
 
+# npm package
+https://www.npmjs.com/package/favicon-stealer
 
 # license
 MIT License
@@ -30,3 +32,4 @@ MIT License
 - v1.0.0: Initial release (2025.1.21)
 - v1.0.1: Add README.md (2025.1.21)
 - v1.0.2: Update license to MIT (2025.1.21)
+- v1.2.0: Fix show bug(2025.2.1)
