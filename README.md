@@ -3,11 +3,14 @@ A react component to get clear and consistent favicon of a website easily.
 
 
 # installation
+## npm
 ```shell
 npm install favicon-stealer
+```
+## pnpm
+```shell
 pnpm add favicon-stealer
 ```
-
 
 # usage
 ```typescript
