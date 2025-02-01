@@ -2,21 +2,29 @@
   "name": "favicon-stealer",
   "version": "1.0.2",
   "main": "index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "favicon",
+    "icon",
+    "logo",
+    "website",
+    "component"
+  ],
+  "author": "Corey Chiu",
   "license": "MIT",
-  "description": "",
+  "description": "Get the favicon of a website easily",
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.7",
+    "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "typescript": "^5.7.3"
   }
