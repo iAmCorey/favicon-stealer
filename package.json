@@ -18,7 +18,7 @@
   ],
   "author": "Corey Chiu",
   "license": "MIT",
-  "description": "Get the favicon of a website easily",
+  "description": "Get clear and consistent favicon of a website easily",
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
