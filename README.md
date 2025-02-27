@@ -31,7 +31,7 @@ import { Favicon } from 'favicon-stealer';
 | `padding` | `number` | The padding in pixels.(px) Default is 0. |
 | `background` | `string` | The background color of the favicon. Default is transparent.(in hex) |
 | `borderRadius` | `number` | The border radius in pixels.(px) Default is 0. |
-| `preferFallback` | `boolean` | Whether to prefer Google's favicon service over the website's own favicon. Default is false. |
+| `preferFallback` | `boolean` | Whether to prefer fallback service (e.g.Google's favicon service) over the website's own favicon. Default is false. |
 
 
 # npm package
