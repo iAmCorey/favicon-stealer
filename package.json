@@ -1,8 +1,13 @@
 {
   "name": "favicon-stealer",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
