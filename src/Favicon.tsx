@@ -20,7 +20,7 @@ const Favicon = ({
   url,
   size = 32,
   className = "",
-  timeout = 5000, // 增加到5秒，给网站自己的favicon更多加载时间
+  timeout = 3000, // 增加到3秒，给网站自己的favicon更多加载时间
   border = false,
   padding = 0,
   background = "transparent",
