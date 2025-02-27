@@ -35,7 +35,11 @@ import { Favicon } from 'favicon-stealer';
 
 
 # npm package
-https://www.npmjs.com/package/favicon-stealer
+[favicon-stealer - npm](https://www.npmjs.com/package/favicon-stealer)
+
+
+# github repository
+[favicon-stealer - github](https://github.com/iAmCorey/favicon-stealer)
 
 
 # license
