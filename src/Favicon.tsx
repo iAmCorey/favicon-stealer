@@ -13,7 +13,7 @@ interface IProps {
   background?: string;
   borderRadius?: number;
   lazy?: boolean;
-  preferGoogle?: boolean;
+  preferFallback?: boolean;
 }
 
 const Favicon = ({
@@ -26,7 +26,7 @@ const Favicon = ({
   background = "transparent",
   borderRadius = 0,
   lazy = false,
-  preferGoogle = false,
+  preferFallback = false,
 }: IProps) => {
   const domain = getDomain(url);
   const [imgSrc, setImgSrc] = useState("");
@@ -55,7 +55,7 @@ const Favicon = ({
     `https://icons.duckduckgo.com/ip3/${domain}.ico`,
   ];
 
-  const fallbackSources = preferGoogle
+  const fallbackSources = preferFallback
     ? [...fallbackServices, ...standardSources]
     : [...standardSources, ...fallbackServices];
 

@@ -31,7 +31,7 @@ import { Favicon } from 'favicon-stealer';
 | `padding` | `number` | The padding in pixels.(px) Default is 0. |
 | `background` | `string` | The background color of the favicon. Default is transparent.(in hex) |
 | `borderRadius` | `number` | The border radius in pixels.(px) Default is 0. |
-| `preferGoogle` | `boolean` | Whether to prefer Google's favicon service over the website's own favicon. Default is false. |
+| `preferFallback` | `boolean` | Whether to prefer Google's favicon service over the website's own favicon. Default is false. |
 
 
 # npm package
@@ -49,3 +49,5 @@ MIT License
 - v1.1.0: Fix show bug(2025.2.1)
 - v1.2.0: Add props(lazy, border, padding, background, borderRadius)(2025.2.1)
 - v1.4.0: Improved favicon detection and optimized package size; Added preferGoogle option and improved favicon loading reliability (2025.2.27)
+- v1.5.0: Update default timeout to 3000(3 seconds) (2025.2.27)
+- v1.6.0: change prop preferGoogle to preferFallback (2025.2.27)
