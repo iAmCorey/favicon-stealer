@@ -48,4 +48,4 @@ MIT License
 - v1.0.2: Update license to MIT (2025.1.21)
 - v1.1.0: Fix show bug(2025.2.1)
 - v1.2.0: Add props(lazy, border, padding, background, borderRadius)(2025.2.1)
-- v1.3.0: Improved favicon detection and optimized package size; Added preferGoogle option and improved favicon loading reliability (2025.2.27)
+- v1.4.0: Improved favicon detection and optimized package size; Added preferGoogle option and improved favicon loading reliability (2025.2.27)
