@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 
 interface IProps {
   url: string;
+  src?: string;
+  alt?: string;
   size?: number;
   className?: string;
   timeout?: number;
@@ -14,10 +16,13 @@ interface IProps {
   borderRadius?: number;
   lazy?: boolean;
   preferFallback?: boolean;
+  preferSrc?: boolean;
 }
 
 const Favicon = ({
   url,
+  src,
+  alt,
   size = 32,
   className = "",
   timeout = 3000, // 增加到3秒，给网站自己的favicon更多加载时间
@@ -27,6 +32,7 @@ const Favicon = ({
   borderRadius = 0,
   lazy = false,
   preferFallback = false,
+  preferSrc = true,
 }: IProps) => {
   const domain = getDomain(url);
   const [imgSrc, setImgSrc] = useState("");
@@ -50,9 +56,10 @@ const Favicon = ({
   ];
 
   const fallbackServices = [
+    `https://favicon.im/${domain}?larger=true`,
+    `https://favicon.im/${domain}`,
     `https://www.google.com/s2/favicons?domain=https://${domain}&sz=64`,
     `https://www.google.com/s2/favicons?domain=http://${domain}&sz=64`,
-    `https://icons.duckduckgo.com/ip3/${domain}.ico`,
   ];
 
   const fallbackSources = preferFallback
@@ -125,10 +132,14 @@ const Favicon = ({
         </div>
       )}
 
-      {imgSrc && (
+      
+
+
+      {/* 根据 preferSrc 参数决定图片源的优先级 */}
+      {(preferSrc ? (src || imgSrc) : (imgSrc || src)) && (
         <img
-          src={imgSrc}
-          alt={`${domain} logo`}
+          src={preferSrc ? (src || imgSrc) : (imgSrc || src)}
+          alt={alt || `${domain} logo`}
           width={size}
           height={size}
           loading={lazy ? "lazy" : "eager"}

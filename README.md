@@ -23,6 +23,8 @@ import { Favicon } from 'favicon-stealer';
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `url` | `string` | The URL of the website to fetch the favicon for. |
+| `src` | `string` | The image src(can be local) of the favicon to display. |
+| `alt` | `string` | The alt text for the favicon image. |
 | `size` | `number` | The size of the favicon in pixels. Default is 32. |
 | `className` | `string` | A class name to apply to the element. |
 | `timeout` | `number` | The timeout in milliseconds for fetching the favicon. Default is 3000 (3 seconds). |
@@ -32,6 +34,7 @@ import { Favicon } from 'favicon-stealer';
 | `background` | `string` | The background color of the favicon. Default is transparent.(in hex) |
 | `borderRadius` | `number` | The border radius in pixels.(px) Default is 0. |
 | `preferFallback` | `boolean` | Whether to prefer fallback service (e.g.Google's favicon service) over the website's own favicon. Default is false. |
+| `preferSrc` | `boolean` | Whether to prefer the local image source over the website's own favicon(if both are provided). Default is true. |
 
 
 # npm package
@@ -55,3 +58,4 @@ MIT License
 - v1.4.0: Improved favicon detection and optimized package size; Added preferGoogle option and improved favicon loading reliability (2025.2.27)
 - v1.5.0: Update default timeout to 3000(3 seconds) (2025.2.27)
 - v1.6.0: change prop preferGoogle to preferFallback (2025.2.27)
+- v1.7.0: Add props(src, alt, preferSrc), add new fallback(favicon.im)(2025.3.13)
