@@ -58,4 +58,4 @@ MIT License
 - v1.4.0: Improved favicon detection and optimized package size; Added preferGoogle option and improved favicon loading reliability (2025.2.27)
 - v1.5.0: Update default timeout to 3000(3 seconds) (2025.2.27)
 - v1.6.0: change prop preferGoogle to preferFallback (2025.2.27)
-- v1.7.0: Add props(src, alt, preferSrc), add new fallback(favicon.im)(2025.3.13)
+- v1.8.0: Add props(src, alt, preferSrc), add new fallback(favicon.im)(2025.3.13)
