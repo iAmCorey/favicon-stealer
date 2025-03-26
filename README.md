@@ -2,7 +2,7 @@
 A react component to get clear and consistent favicon of a website easily.
 
 
-# installation
+# Installation
 ## npm
 ```shell
 npm install favicon-stealer
@@ -12,14 +12,14 @@ npm install favicon-stealer
 pnpm add favicon-stealer
 ```
 
-# usage
+# Usage
 ```typescript
 import { Favicon } from 'favicon-stealer';
 
 <Favicon url="https://example.com" />
 ```
 
-## props
+## Props
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `url` | `string` | The URL of the website to fetch the favicon for. |
@@ -37,15 +37,15 @@ import { Favicon } from 'favicon-stealer';
 | `preferSrc` | `boolean` | Whether to prefer the local image source over the website's own favicon(if both are provided). Default is true. |
 
 
-# npm package
+# NPM Package
 [favicon-stealer - npm](https://www.npmjs.com/package/favicon-stealer)
 
 
-# github repository
+# GitHub Repository
 [favicon-stealer - github](https://github.com/iAmCorey/favicon-stealer)
 
 
-# license
+# License
 MIT License
 
 
@@ -59,3 +59,4 @@ MIT License
 - v1.5.0: Update default timeout to 3000(3 seconds) (2025.2.27)
 - v1.6.0: change prop preferGoogle to preferFallback (2025.2.27)
 - v1.8.0: Add props(src, alt, preferSrc), add new fallback(favicon.im)(2025.3.13)
+- v2.0.0: Fix show bug when use 'src'(2025.3.26)
