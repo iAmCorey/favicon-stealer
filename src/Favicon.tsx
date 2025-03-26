@@ -68,15 +68,19 @@ const Favicon = ({
 
   useEffect(() => {
     if (!isInitialized) {
-      setImgSrc(fallbackSources[0]);
+      if (src) {
+        setIsLoading(false);
+      } else {
+        setImgSrc(fallbackSources[0]);
+      }
       setIsInitialized(true);
     }
-  }, [isInitialized, fallbackSources]);
+  }, [isInitialized, fallbackSources, src]);
 
   useEffect(() => {
     let timeoutId: any;
 
-    if (isLoading && imgSrc) {
+    if (isLoading && imgSrc && !src) {
       timeoutId = setTimeout(() => {
         handleError();
       }, timeout);
@@ -87,7 +91,7 @@ const Favicon = ({
         clearTimeout(timeoutId);
       }
     };
-  }, [imgSrc, isLoading, timeout]);
+  }, [imgSrc, isLoading, timeout, src]);
 
   const handleError = () => {
     const nextIndex = fallbackIndex + 1;
@@ -136,9 +140,9 @@ const Favicon = ({
 
 
       {/* 根据 preferSrc 参数决定图片源的优先级 */}
-      {(preferSrc ? (src || imgSrc) : (imgSrc || src)) && (
+      {(src || imgSrc) && (
         <img
-          src={preferSrc ? (src || imgSrc) : (imgSrc || src)}
+          src={src || imgSrc}
           alt={alt || `${domain} logo`}
           width={size}
           height={size}
