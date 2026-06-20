@@ -1,8 +1,17 @@
 {
   "name": "favicon-stealer",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
   "files": [
     "dist",
     "LICENSE",
@@ -10,7 +19,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "tsup",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -31,6 +40,7 @@
   "devDependencies": {
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "tsup": "^8.3.5"
   }
 }
