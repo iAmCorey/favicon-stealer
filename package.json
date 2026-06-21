@@ -1,6 +1,6 @@
 {
   "name": "favicon-stealer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -33,11 +33,12 @@
   "author": "Corey Chiu",
   "license": "MIT",
   "description": "Get clear and consistent favicon of a website easily",
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+  "peerDependencies": {
+    "react": ">=18"
   },
   "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "typescript": "^5.7.3",
