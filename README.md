@@ -3,6 +3,9 @@ A react component to get clear and consistent favicon of a website easily.
 
 
 # Installation
+
+> Requires **React 18 or 19** as a peer dependency. Make sure `react` and `react-dom` are installed in your project (most React apps already have them).
+
 ## npm
 ```shell
 npm install favicon-stealer
@@ -13,10 +16,17 @@ pnpm add favicon-stealer
 ```
 
 # Usage
-```typescript
-import { Favicon } from 'favicon-stealer';
+```tsx
+import { Favicon, type FaviconProps } from 'favicon-stealer';
 
+// Basic: auto-detect the site's favicon
 <Favicon url="https://example.com" />
+
+// Provide your own image first; falls back to auto-detection if it fails to load
+<Favicon url="https://example.com" src="/logos/example.png" />
+
+// Lazy-load below-the-fold icons (waits until scrolled into view)
+<Favicon url="https://example.com" lazy />
 ```
 
 ## Props
@@ -28,7 +38,7 @@ import { Favicon } from 'favicon-stealer';
 | `size` | `number` | The size of the favicon in pixels. Default is 32. |
 | `className` | `string` | A class name to apply to the element. |
 | `timeout` | `number` | The timeout in milliseconds before giving up on a slow/unresponsive **auto-detected** source and trying the next one. A provided `src` is exempt — it is only abandoned on a real load failure, never on a timeout. Default is 2000 (2 seconds). |
-| `lazy` | `boolean` | Whether to load the favicon lazily. Default is false. |
+| `lazy` | `boolean` | Whether to load the favicon lazily (defers loading until scrolled into view; lazy icons are exempt from the timeout). Default is false. |
 | `border` | `boolean` | Whether to show a border around the favicon. Default is false. |
 | `padding` | `number` | The padding in pixels.(px) Default is 0. |
 | `background` | `string` | The background color of the favicon. Default is transparent.(in hex) |
