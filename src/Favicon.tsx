@@ -60,6 +60,33 @@ const injectKeyframes = () => {
   document.head.appendChild(el);
 };
 
+// lazy 图的「进入视口」检测:所有实例共用一个 IntersectionObserver(列表页一页几十上百个图标,不必各 new 一个)。
+// 只关心是否进入过视口:命中一次即取消观察并回调。rootMargin 用默认 0 —— 浏览器原生懒加载的提前量 ≥ 视口,
+// 元素进入视口时请求必已发出,据此开始计时只会偏晚、不会过早。
+// 环境没有 IntersectionObserver(老 WebView / jsdom)时什么都不做,回调永远不会触发。
+let visibilityObserver: IntersectionObserver | undefined;
+const visibilityCallbacks = new WeakMap<Element, () => void>();
+const unobserveVisibility = (el: Element) => {
+  visibilityCallbacks.delete(el);
+  visibilityObserver?.unobserve(el);
+};
+const observeVisibility = (el: Element, onVisible: () => void) => {
+  if (typeof IntersectionObserver === "undefined") return;
+  if (!visibilityObserver) {
+    visibilityObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const cb = visibilityCallbacks.get(entry.target);
+        unobserveVisibility(entry.target);
+        cb?.();
+      }
+    });
+  }
+  visibilityCallbacks.set(el, onVisible);
+  visibilityObserver.observe(el);
+  return () => unobserveVisibility(el);
+};
+
 const Favicon = ({
   url,
   src,
@@ -106,11 +133,16 @@ const Favicon = ({
     status: "loading",
   });
 
+  // lazy 时记下「哪个源的 <img> 已进入过视口」:等于 currentSrc 才开始计时。
+  // 换源后自然失配,新源需重新等进入视口;sources 变时下面一并清空。
+  const [seenSrc, setSeenSrc] = useState<string | null>(null);
+
   // sources 变(url / src / prefer* 变)时,在渲染期同步重置到第一个源。
   // 用渲染期更新(而非 effect)避免先提交并绘制一帧「新 sources + 旧 index」(错图/空白 + 一个废图片请求)。
   const [prevSources, setPrevSources] = useState(sources);
   if (sources !== prevSources) {
     setPrevSources(sources);
+    setSeenSrc(null);
     dispatch({ type: "reset" });
   }
 
@@ -149,16 +181,26 @@ const Favicon = ({
     };
   }, [state.status, currentSrc, sources]);
 
-  // 每个网络源最多等 timeout 毫秒,无响应则跳下一个;用户 src 不计时。
-  // lazy 图在屏幕外被浏览器故意推迟加载(complete 恒 false、不触发事件),
-  // 计时会把所有源烧穿成首字母 —— 故 lazy 时也豁免超时,改由滚入视口后的 onLoad/onError 推进。
+  // lazy 图在屏幕外被浏览器故意推迟加载(complete 恒 false、不触发事件),从挂载起计时会把所有源烧穿成首字母;
+  // 故 lazy 时要等当前源的 <img> 进入过视口(请求必已发出)才开始计时。
+  // 观察的是 <img> 本身(按源 key 重建),每个源各等一次:进入视口后被滚走,下一个源也不会在屏幕外被计时。
+  const waitingForView = lazy && seenSrc !== currentSrc;
   useEffect(() => {
-    if (state.status !== "loading" || isUserSrc || lazy) return;
+    const img = imgRef.current;
+    if (!img || state.status !== "loading" || isUserSrc || !waitingForView)
+      return;
+    return observeVisibility(img, () => setSeenSrc(currentSrc));
+  }, [state.status, currentSrc, isUserSrc, waitingForView]);
+
+  // 每个网络源最多等 timeout 毫秒,无响应则跳下一个;用户 src 不计时。
+  // lazy 图还没进入过视口时不计时(见上);没有 IntersectionObserver 的环境永远等不到,退化为只靠 onLoad/onError 推进。
+  useEffect(() => {
+    if (state.status !== "loading" || isUserSrc || waitingForView) return;
     const id = setTimeout(() => {
       dispatch({ type: "error", total: sources.length });
     }, timeout);
     return () => clearTimeout(id);
-  }, [state.status, currentSrc, isUserSrc, lazy, timeout, sources]);
+  }, [state.status, currentSrc, isUserSrc, waitingForView, timeout, sources]);
 
   const label = alt ?? (domain ? `${domain} logo` : "favicon");
   const letter = domain.charAt(0).toUpperCase() || "?";
